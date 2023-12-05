@@ -3,7 +3,7 @@ import random
 import sys
 import time
 
-import pygame as pg
+import pygame as pg # 改行を気お付ける
 
 
 WIDTH = 1600  # ゲームウィンドウの幅
@@ -144,7 +144,6 @@ class Beam:
             screen.blit(self.img, self.rct)
 
 
-
 def main():
     pg.display.set_caption("たたかえ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))    
@@ -181,7 +180,6 @@ def main():
                pg.display.update()
 
         bombs = [bomb for bomb in bombs if bomb is not None]
-
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)
         for bomb in bombs:
@@ -191,7 +189,6 @@ def main():
         pg.display.update()
         tmr += 1
         clock.tick(50)
-
 
 if __name__ == "__main__":
     pg.init()
