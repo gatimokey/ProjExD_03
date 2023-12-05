@@ -62,7 +62,7 @@ class Bird:
         #    True, 
         #    False
         #)
-        self.img = self.imgs[(+5,0)]
+        self.img = self.imgs[(+5,0)] #右向きこうかとんをデフォ画像にする
         self.rct = self.img.get_rect()
         self.rct.center = xy
 
@@ -89,8 +89,8 @@ class Bird:
         self.rct.move_ip(sum_mv)
         if check_bound(self.rct) != (True, True):
             self.rct.move_ip(-sum_mv[0], -sum_mv[1])
-            if not (sum_mv[0] == 0 and sum_mv[1] == 0):
-                self.img = self.imgs[tuple(sum_mv)]
+        if not (sum_mv[0] == 0 and sum_mv[1] == 0):
+            self.img = self.imgs[tuple(sum_mv)]
         screen.blit(self.img, self.rct)
 
 
