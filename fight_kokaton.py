@@ -142,7 +142,22 @@ class Beam:
             """
             self.rct.move_ip(self.vx, self.vy)
             screen.blit(self.img, self.rct)
+            
 
+class Explosion:
+    def __init__(self,bomb: Bomb):
+        self.img = pg.image.load(f"{MAIN_DIR}/fig/explosion.png")
+        self.rct = self.img.get_rect()
+        self.rct.center = bomb.rct.center
+        self.life = 100
+
+    def update(self, screen: pg.Surface):
+        self.life -= 1
+        if self.life > 0:
+            return self.img
+        if self.life < 0:
+            return None
+        screen.blit(self.img, self.rct)
 
 
 def main():
@@ -152,6 +167,11 @@ def main():
     bird = Bird(3, (900, 400))
     bombs = [Bomb() for _ in range(NUM_OF_BOMBS)]
     beam = None
+
+    explosion = []
+    explosions = Explosion()
+    explosion.append(explosions)
+
 
     clock = pg.time.Clock()
     tmr = 0
@@ -175,10 +195,13 @@ def main():
             
         for i , bomb in enumerate(bombs):
             if beam is not None and bomb.rct.colliderect(beam.rct):
-               bombs[i] = None
-               beam = None
-               bird.change_img(6, screen)
-               pg.display.update()
+                #explosion.append(Explosion)
+                
+
+                bombs[i] = None
+                beam = None
+                bird.change_img(6, screen)
+                pg.display.update()
 
         bombs = [bomb for bomb in bombs if bomb is not None]
 
